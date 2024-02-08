@@ -26,9 +26,6 @@ def get_profile_info():
     # username = "messeduppcs"
     if username:
         # Define an asynchronous function to fetch the profile info
-        if not is_valid_username(username):
-            return jsonify({'error': 'Invalid username.'}), 400
-
         profile_info = scraper.get_profile_info(username)
 
         return jsonify(profile_info)
@@ -42,9 +39,6 @@ def get_tweets():
 
     if not usernames:
         return jsonify({'error': 'Usernames parameter is missing.'}), 400
-
-    if not is_valid_username(usernames):
-        return jsonify({'error': 'Invalid usernames.'}), 400
 
     tweets = scraper.get_tweets(usernames, mode="user", number=number)
     return jsonify(tweets)
